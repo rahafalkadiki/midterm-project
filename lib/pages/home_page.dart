@@ -5,7 +5,6 @@ import 'package:easy_localization/easy_localization.dart';
 import '../models/coffee.dart';
 import '../theme/app_theme.dart';
 import '../widgets/coffee_card.dart';
-import '../widgets/category_item.dart';
 import '../widgets/section_title.dart';
 import 'product_details_page.dart';
 import 'settings_page.dart';
@@ -25,14 +24,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String selectedCategory = 'All';
-
-  final List<String> categories = [
-    'All',
-    'Hot Coffee',
-    'Cold Coffee',
-   
-  ];
+  
 
   final List<Coffee> coffees = const [
     Coffee(
@@ -75,11 +67,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final filteredCoffees = selectedCategory == 'All'
-        ? coffees
-        : coffees.where((coffee) {
-            return coffee.category == selectedCategory;
-          }).toList();
+    
 
     return Scaffold(
       appBar: AppBar(
@@ -149,46 +137,7 @@ class _HomePageState extends State<HomePage> {
 
             const SizedBox(height: 28),
 
-            SectionTitle(title: 'categories'.tr()),
-
-            const SizedBox(height: 14),
-
-            SizedBox(
-              height: 48,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: categories.length,
-                separatorBuilder: (context, index) =>
-                    const SizedBox(width: 10),
-                itemBuilder: (context, index) {
-                  final category = categories[index];
-
-                  return CategoryItem(
-                    title: category == 'All'
-                        ? 'all'.tr()
-                        : category == 'Hot Coffee'
-                            ? 'hot_coffee'.tr()
-                            : category == 'Cold Coffee'
-                                ? 'iced_coffee'.tr()
-                                : category,
-                    icon: category == 'All'
-                        ? Icons.grid_view_rounded
-                        : category == 'Hot Coffee'
-                            ? Icons.coffee
-                            : category == 'Cold Coffee'
-                                ? Icons.local_drink
-                                : Icons.cake,
-                    isSelected: selectedCategory == category,
-                    onTap: () {
-                      setState(() {
-                        selectedCategory = category;
-                      });
-                    },
-                  );
-                },
-              ),
-            ),
-
+           
             const SizedBox(height: 28),
 
             Container(
@@ -230,7 +179,7 @@ class _HomePageState extends State<HomePage> {
             GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: filteredCoffees.length,
+              itemCount: coffees.length,
               gridDelegate:
                   const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
@@ -239,7 +188,7 @@ class _HomePageState extends State<HomePage> {
                 childAspectRatio: 0.68,
               ),
               itemBuilder: (context, index) {
-                final coffee = filteredCoffees[index];
+                final coffee = coffees[index];
 
                 return CoffeeCard(
                   coffee: coffee,
