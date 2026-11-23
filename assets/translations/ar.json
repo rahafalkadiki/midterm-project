@@ -1,0 +1,21 @@
+
+{
+  "settings": "الإعدادات",
+  "dark_mode": "الوضع الداكن",
+  "language": "اللغة",
+  "english": "الإنجليزية",
+  "arabic": "العربية",
+  "choose_language": "اختر لغتك",
+  "appearance": "المظهر",
+   "home": "الرئيسية",
+  "search_coffee": "ابحث عن القهوة...",
+  "categories": "الفئات",
+  "all": "الكل",
+  "hot_coffee": "قهوة ساخنة",
+  "iced_coffee": "قهوة مثلجة",
+  "popular_coffee": "القهوة الأكثر شعبية",
+  "see_all": "عرض الكل",
+  "special_offer": "عرض خاص",
+  "offer_description": "احصل على قهوتك المفضلة بسعر مميز!"
+
+}
